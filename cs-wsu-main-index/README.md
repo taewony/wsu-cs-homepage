@@ -1,43 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 우송대학교 컴퓨터공학전공 홈페이지 개편 프로젝트
 
-## Getting Started
+## 🚀 프로젝트 개요
 
-First, run the development server:
+본 프로젝트는 우송대학교 컴퓨터공학전공의 웹사이트를 현대적인 웹 기술과 사용자 경험(UX)을 고려하여 전면 개편하는 것을 목표로 합니다. 기존 홈페이지의 한계를 극복하고, 학생 및 방문객에게 더욱 매력적이고 직관적인 정보를 제공하고자 합니다.
+
+## 🎯 개편의 필요성 및 방향
+
+기존 홈페이지는 다음과 같은 문제점을 가지고 있었습니다:
+
+1.  **기술적 노후화**: 최신 웹 표준 및 반응형 디자인이 적용되지 않아 다양한 디바이스에서의 접근성이 떨어집니다.
+2.  **사용자 경험(UX) 부족**: 정보 탐색이 어렵고, 시각적으로 답답한 레이아웃으로 인해 사용자 편의성이 낮습니다.
+3.  **콘텐츠의 매력도 부족**: 학과 활동, 프로젝트, 선배들의 이야기 등 학생들의 흥미를 유발할 생생한 콘텐츠가 부족하여 학과의 역동성을 제대로 전달하지 못합니다.
+
+이러한 문제점을 해결하고, 4차 산업혁명 시대를 선도하는 컴퓨터공학과의 비전을 담아내기 위해 다음과 같은 방향으로 개편을 진행합니다:
+
+*   **모던하고 반응형 디자인**: 모든 디바이스에서 최적화된 사용자 경험을 제공합니다.
+*   **직관적인 내비게이션**: 사용자가 원하는 정보를 쉽고 빠르게 찾을 수 있도록 메뉴 구조를 재정비합니다.
+*   **시각적 매력 강화**: 동적인 요소와 고품질 이미지를 활용하여 학과의 활기찬 분위기를 전달합니다.
+*   **콘텐츠 확장성 확보**: 학과 소식, 교육과정, 졸업생 이야기 등 다양한 콘텐츠를 유연하게 추가하고 관리할 수 있는 구조를 마련합니다.
+
+## 🛠️ Prototype 개발 방안 및 현재 진행 상황
+
+본 프로젝트는 Next.js를 기반으로 두 개의 핵심 프로토타입을 개발하여 개편 방향을 시각적으로 제시합니다.
+
+### 1. `cs-wsu-main-intro` (인트로 페이지)
+
+*   **목표**: `https://cs.wsu.ac.kr/main/intro.jsp` 페이지를 대체하여 학과의 첫인상을 결정하는 매력적인 진입점을 제공합니다.
+*   **특징**:
+    *   **동적인 이미지 슬라이더**: 학과의 주요 활동 및 비전을 담은 이미지를 Swiper 컴포넌트를 활용하여 시각적으로 강조합니다. (현재 `homepage` 디렉토리의 `image1.jpg`, `image2.jpg`, `image3.jpg`, `image4.jpg`를 사용 중)
+    *   **강렬한 메시지**: "나의 미래가 그려지는 곳"이라는 핵심 문구를 통해 방문객의 흥미를 유발합니다.
+    *   **메인 페이지로의 연결**: "컴퓨터공학전공 홈페이지 바로가기" 버튼을 통해 메인 페이지로의 자연스러운 전환을 유도합니다.
+	*   **YouTube 동영상 재생**: 학과 소개 또는 관련 영상을 직접 페이지 내에서 시청할 수 있도록 YouTube 임베드 기능을 제공합니다.
+*   **현재 상태**: 기본적인 디자인 및 기능 구현 완료. 이미지 슬라이더 및 텍스트 디자인 개선.
+
+### 2. `cs-wsu-main-index` (메인 홈페이지)
+
+*   **목표**: `https://cs.wsu.ac.kr/main/index.jsp` 페이지를 대체하여 학과의 모든 정보를 체계적으로 제공하는 허브 역할을 합니다.
+*   **특징**:
+    *   **패럴랙스 스크롤링 효과**: `HeroSection`에 배경 이미지를 고정하여 스크롤 시 깊이감을 더하는 시각적 효과를 적용했습니다. (현재 `public/images/image3.jpg` 사용 중)
+    *   **강조된 헤드라인**: "나의 미래가 그려지는 곳"과 "우송대학교 컴퓨터공학과" 텍스트에 반투명 파란색 배경을 적용하여 가독성을 높이고 시각적 포인트를 제공합니다.
+    *   **재사용 가능한 컴포넌트**: `Header` 컴포넌트를 분리하여 여러 페이지에서 일관된 내비게이션을 제공합니다.
+    *   **확장 가능한 메뉴 구조**: 현재 구현된 메뉴(`학과소개`, `교육과정`, `학과활동`, `취업이야기`, `적성체크`)를 통해 향후 콘텐츠 확장을 용이하게 합니다. 특히, `학과소개` 페이지는 별도의 페이지로 분리되었으며, `교육과정`, `학과활동`, `취업이야기`, `적성체크`는 메인 페이지의 해당 섹션으로 이동합니다.
+    *   **학과소개 페이지 프로토타입**: "학과소개" 내비게이션 링크를 클릭하면 학부장 인사말을 담은 페이지로 이동하도록 구현하여, 개별 페이지 구현의 가능성을 제시합니다.
+*   **현재 상태**: 핵심 레이아웃 및 일부 섹션 프로토타입 구현 완료. 내비게이션 및 페이지 간 이동 기능 구현.
+
+## 🛠️ 기술 스택 (Technology Stack)
+
+본 프로젝트는 다음과 같은 주요 기술 스택을 활용하여 개발되었습니다.
+*   **Next.js**: `15.3.4`: A React framework for building web applications.
+*   **React**: `^19.0.0`: A JavaScript library for building user interfaces.
+*   **Tailwind CSS**: `^4`: A utility-first CSS framework.
+*   **Swiper**: `^11.2.10`: A modern carousels sliders library. (이미지/콘텐츠를 슬라이드 형태로 순환하는 UI 컴포넌트)
+*   **TypeScript**: `^5`
+*   **ESLint**: `^9`
+
+## 🚀 시연 방법
+
+두 프로토타입은 별도의 개발 서버에서 실행됩니다.
+
+1.  **인트로 페이지 (`cs-wsu-main-intro`) 실행**
+
+    Windows Terminal에서 다음 명령어를 실행하여 인트로 페이지 개발 서버를 시작합니다.
+
+    ```bash
+    cd cs-wsu-main-intro
+    npm install
+    npm run dev
+    ```
+
+    이제 웹 브라우저에서 `http://localhost:3000`으로 접속하여 인트로 페이지를 확인할 수 있습니다.
+
+2.  **메인 페이지 (`cs-wsu-main-index`) 실행**
+
+    인트로 페이지의 "컴퓨터공학전공 홈페이지 바로가기" 버튼을 클릭하면 메인 페이지로 이동해야 합니다. 이를 위해 **별도의 터미널**을 열고 다음 명령어를 실행하여 메인 페이지 개발 서버를 시작합니다.
+
+    ```bash
+    cd cs-wsu-main-index
+    npm install
+    npm run dev
+    ```
+
+    이제 인트로 페이지에서 버튼을 클릭하면 `http://localhost:3001` (또는 다른 포트)로 리디렉션되어 메인 페이지를 확인할 수 있습니다.
+
+---
+
+## 🛠️ Node.js 설치 (Next.js 환경 설정)
+
+Next.js 프로젝트를 실행하기 위해서는 Node.js가 필요합니다. 다음 단계를 따라 Node.js를 설치하고 환경 변수를 설정하세요.
+
+### 1. Node.js 설치 파일 다운로드
+
+Node.js 공식 웹사이트(https://nodejs.org/ko/download/)에 접속하여 여러분의 운영체제에 맞는 LTS(Long Term Support) 버전을 다운로드합니다. 일반적으로 Windows Installer(.msi)를 권장합니다.
+
+### 2. Node.js 설치 진행
+
+다운로드한 .msi 파일을 실행하여 설치를 시작합니다. 설치 마법사의 지시에 따라 진행하며, 특별한 요구사항이 없다면 기본 설정으로 설치를 완료합니다. 설치 과정에서 'Add to PATH' 옵션이 자동으로 선택되어 있는지 확인하세요. (일반적으로 기본 선택되어 있습니다.)
+
+### 3. 환경 변수(PATH) 설정 확인
+
+Node.js 설치 시 자동으로 PATH 환경 변수가 설정되지만, 간혹 수동으로 확인하거나 설정해야 할 수도 있습니다.
+
+**Windows:**
+
+1.  `Windows 키 + R`을 눌러 실행 창을 열고 `sysdm.cpl`을 입력한 후 `확인`을 클릭합니다.
+2.  `시스템 속성` 창에서 `고급` 탭을 선택한 후 `환경 변수(N)...` 버튼을 클릭합니다.
+3.  `환경 변수` 창에서 `시스템 변수(S)` 섹션 아래의 `Path`를 찾아 선택한 후 `편집(I)...` 버튼을 클릭합니다.
+4.  `환경 변수 편집` 창에서 Node.js가 설치된 경로(예: `C:\Program Files\nodejs\`)가 포함되어 있는지 확인합니다. 만약 없다면 `새로 만들기(N)`를 클릭하여 해당 경로를 추가합니다.
+5.  모든 창에서 `확인`을 클릭하여 변경 사항을 저장합니다.
+
+### 4. 설치 확인
+
+명령 프롬프트(CMD) 또는 PowerShell을 열고 다음 명령어를 입력하여 Node.js와 npm(Node.js 패키지 관리자)이 올바르게 설치되었는지 확인합니다.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node -v
+npm -v
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Technologies Used
-
-*   **Next.js**: A React framework for building web applications.
-*   **React**: A JavaScript library for building user interfaces.
-*   **Tailwind CSS**: A utility-first CSS framework.
-*   **Swiper**: A modern touch slider library.
+각각 Node.js와 npm의 버전 정보가 출력되면 성공적으로 설치된 것입니다.
