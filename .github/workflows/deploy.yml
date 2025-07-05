@@ -1,0 +1,57 @@
+name: Deploy Next.js projects
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Build wsu-cs-index
+      - name: Install and Build wsu-cs-index
+        run: |
+          cd wsu-cs-index
+          npm install
+          npm run build
+          touch out/.nojekyll
+      
+      # Build wsu-cs-intro
+      - name: Install and Build wsu-cs-intro
+        run: |
+          cd wsu-cs-intro
+          npm install
+          npm run build
+          touch out/.nojekyll
+
+      - name: Prepare deployment artifact
+        run: |
+          mkdir -p deploy
+          cp -r wsu-cs-index/out/* deploy/
+          mkdir -p deploy/intro
+          cp -r wsu-cs-intro/out/* deploy/intro/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./deploy
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
