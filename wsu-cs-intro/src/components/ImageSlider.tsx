@@ -14,29 +14,35 @@ const images = [
   '/images/image4.jpg',
 ]
 
+// For GitHub Pages deployment
+const isProd = process.env.NODE_ENV === 'production'
+const basePath = isProd ? '/wsu-cs-homepage/intro' : ''
+
 export default function ImageSlider() {
   return (
-    <Swiper
-      modules={[Navigation, Pagination, Autoplay]}
-      navigation
-      pagination={{ clickable: true }}
-      loop={true}
-      autoplay={{ delay: 3000 }}
-      className="w-full h-[400px] rounded-lg overflow-hidden"
-    >
-      {images.map((src, index) => (
-        <SwiperSlide key={index}>
-          <div className="relative w-full h-full">
-            <Image
-              src={src}
-              alt={`Slide ${index}`}
-              layout="fill"
-              objectFit="cover"
-              unoptimized // GitHub Pages 정적 export 시 필요
-            />
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="shadow-xl rounded-lg overflow-hidden">
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        navigation
+        pagination={{ clickable: true }}
+        loop={true}
+        autoplay={{ delay: 3000 }}
+        className="w-full h-[400px]"
+      >
+        {images.map((src, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative w-full h-full">
+              <Image
+                src={`${basePath}${src}`}
+                alt={`Slide ${index}`}
+                layout="fill"
+                objectFit="cover"
+                unoptimized
+              />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   )
 }
