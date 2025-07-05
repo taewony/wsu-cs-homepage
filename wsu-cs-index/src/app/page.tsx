@@ -9,10 +9,14 @@ import QuizSection from '@/components/QuizSection';
 import Header from '@/components/Header';
 
 const Footer = () => (
-  <footer className="bg-gray-800 text-white py-8">
-    <div className="container mx-auto text-center">
-      <p>&copy; 2025 Woosong University, Department of Computer Science. All Rights Reserved.</p>
-      <p className="mt-2">대전광역시 동구 동대전로 171 우송대학교</p>
+  <footer className="text-center py-8 border-t border-slate-200 bg-slate-50">
+    <div className="container mx-auto">
+      <p className="text-slate-500">
+        © {new Date().getFullYear()} Woosong University, Department of Computer Science.
+      </p>
+      <p className="mt-2 text-sm text-slate-400">
+        대전광역시 동구 동대전로 171 우송대학교
+      </p>
     </div>
   </footer>
 );
