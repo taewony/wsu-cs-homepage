@@ -2,7 +2,7 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-
+import Image from 'next/image'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -26,11 +26,15 @@ export default function ImageSlider() {
     >
       {images.map((src, index) => (
         <SwiperSlide key={index}>
-          <img
-            src={src}
-            alt={`Slide ${index}`}
-            className="w-full h-full object-cover"
-          />
+          <div className="relative w-full h-full">
+            <Image
+              src={src}
+              alt={`Slide ${index}`}
+              layout="fill"
+              objectFit="cover"
+              unoptimized // GitHub Pages 정적 export 시 필요
+            />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
